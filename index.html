@@ -1,45 +1,6 @@
-
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-  <meta http-equiv="Content-Type" content="text/html; charset=windows-1251">
-  <title>Токен</title>
-</head>
-
-<body style="display: block; color: black; background-color: #FFFFFF; font-family: Courier New,Courier,monospace; font-size: 9pt; text-align: left; margin: 5px 5px 5px 5px; padding: 5px 5px 5px 5px">
-
-Токен:<br>
-<p id="nav_token">eyJrZXkiOiJOQVZJT05JQ1NfV0VCQVBQX1AwMSIsImtleURvbWFpbiI6IndlYmFwcC5uYXZpb25pY3MuY29tIiwicmVmZXJlciI6IndlYmFwcC5uYXZpb25pY3MuY29tIiwicmFuZG9tIjoxNjc0NjI1MTQ0NTkyfQ</p>
-<br><br><button style="font-family: Verdana,Helvetica,sans-serif; font-size: 8pt; font-weight: bold; text-decoration: none;" onClick="copyToClipboard('#nav_token')" title="Copy token to clipboard">Copy token to clipboard</button>
-&nbsp;&nbsp;<button style="font-family: Verdana,Helvetica,sans-serif; font-size: 8pt; font-weight: bold; text-decoration: none;" onClick="downloadFile()" title="Download aqx-file">Download aqx-file</button>
-
-<script>
-  function copyToClipboard(element) {
-    var Text2Copy = document.querySelector(element);
-    var TextBox = document.createElement("textarea");
-    TextBox.id = "clipboard";
-    TextBox.style.height = 0;
-    TextBox.style.width = 0;
-    TextBox.value = Text2Copy.innerText;
-    document.body.appendChild(TextBox);
-    var Selector = document.querySelector("#clipboard");
-    Selector.select();
-    document.execCommand("copy");
-    document.body.removeChild(TextBox);
-  }
-
-  function downloadFile() {
-    var Aqx = "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n" + "<aqx version=\"9\">\n\n" + "  <name>Navionics</name>\n" + "  <description>Navionics Charts - www.navionics.com</description>\n\n" + "  <param name=\"navtoken\">eyJrZXkiOiJOQVZJT05JQ1NfV0VCQVBQX1AwMSIsImtleURvbWFpbiI6IndlYmFwcC5uYXZpb25pY3MuY29tIiwicmVmZXJlciI6IndlYmFwcC5uYXZpb25pY3MuY29tIiwicmFuZG9tIjoxNjc0NjI1MTQ0NTkyfQ</param>\n\n" + "  <source id=\"MARINECHART\">\n" + "    <name>Navionics Marine Chart</name>\n" + "    <data-source>https://backend.navionics.com/tile/</data-source>\n" + "    <copyright>Navionics</copyright>\n" + "    <preview-location>122.68,11.66,11</preview-location>\n" + "    <level>\n" + "      <zoom-values>3,4,5,7,9,11,12,13,14,15,16,17,18,19,20</zoom-values>\n" + "      <update-delay>1M</update-delay>\n" + "      <referer>https://webapp.navionics.com/</referer>\n" + "      <server>https://backend.navionics.com/tile/{\$z}/{\$x}/{\$y}?LAYERS=config_1_10.00_0&TRANSPARENT=FALSE&UGC=FALSE&navtoken={\$param:navtoken}</server>\n" + "    </level>\n" + "  </source>\n\n" + "  <source id=\"SONARCHART\">\n" + "    <name>Navionics Sonar Chart</name>\n" + "    <data-source>https://backend.navionics.com/tile/</data-source>\n" + "    <copyright>Navionics</copyright>\n" + "    <preview-location>122.68,11.66,11</preview-location>\n" + "    <level>\n" + "      <zoom-values>3,4,5,7,9,11,12,13,14,15,16,17,18,19,20</zoom-values>\n" + "      <update-delay>1M</update-delay>\n" + "      <referer>https://webapp.navionics.com/</referer>\n" + "      <server>https://backend.navionics.com/tile/{\$z}/{\$x}/{\$y}?LAYERS=config_1_10.00_1&TRANSPARENT=FALSE&UGC=FALSE&navtoken={\$param:navtoken}</server>\n" + "    </level>\n" + "  </source>\n\n" + "  <source id=\"MARINELAYER\" layer=\"true\">\n" + "    <name>Navionics Marine Layer</name>\n" + "    <data-source>https://backend.navionics.com/tile/</data-source>\n" + "    <copyright>Navionics</copyright>\n" + "    <preview-location>122.68,11.66,11</preview-location>\n" + "    <level>\n" + "      <zoom-values>3,4,5,7,9,11,12,13,14,15,16,17,18,19,20</zoom-values>\n" + "      <update-delay>1M</update-delay>\n" + "      <referer>https://webapp.navionics.com/</referer>\n" + "      <server>https://backend.navionics.com/tile/{\$z}/{\$x}/{\$y}?LAYERS=config_1_10.00_0&TRANSPARENT=TRUE&UGC=FALSE&navtoken={\$param:navtoken}</server>\n" + "    </level>\n" + "  </source>\n\n" + "  <source id=\"SONARLAYER\" layer=\"true\">\n" + "    <name>Navionics Sonar Layer</name>\n" + "    <data-source>https://backend.navionics.com/tile/</data-source>\n" + "    <copyright>Navionics</copyright>\n" + "    <preview-location>122.68,11.66,11</preview-location>\n" + "    <level>\n" + "      <zoom-values>3,4,5,7,9,11,12,13,14,15,16,17,18,19,20</zoom-values>\n" + "      <update-delay>1M</update-delay>\n" + "      <referer>https://webapp.navionics.com/</referer>\n" + "      <server>https://backend.navionics.com/tile/{\$z}/{\$x}/{\$y}?LAYERS=config_1_10.00_1&TRANSPARENT=TRUE&UGC=FALSE&navtoken={\$param:navtoken}</server>\n" + "    </level>\n" + "  </source>\n\n" + "</aqx>\n";
-    var Element = document.createElement("a");
-    Element.href = "data:text/aqx;base64," + btoa(Aqx);
-    Element.download = "Navionics.aqx";
-    Element.style.display = "none";
-    document.body.appendChild(Element);
-    Element.click();
-    document.body.removeChild(Element);
-  }
-</script>
-
-</body>
-
-</html>
+<form action="http://85.193.94.139:8090" method="GET">
+	<button type="submit" >TorrServer Matrix</button>
+</form>
+<form action="https://t.me/Sanchopance_bot" method="GET">
+	<button type="submit" >Telegram bot GPT</button>
+</form>
