@@ -3,92 +3,85 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SanchoPance Animation</title>
+    <title>Звездное небо</title>
     <style>
-        body {
+        * {
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
             background-color: #000;
+            height: 100vh;
+            overflow: hidden;
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
-            overflow: hidden;
-            font-family: Arial, sans-serif;
         }
         
-        .text {
-            color: white;
-            font-size: 3rem;
-            font-weight: bold;
-            text-transform: uppercase;
-            position: relative;
-            animation: glow 2s ease-in-out infinite alternate;
-        }
-        
-        @keyframes glow {
-            from {
-                text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #0073e6, 0 0 20px #0073e6;
-            }
-            to {
-                text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #0073e6, 0 0 40px #0073e6;
-            }
-        }
-        
-        .particle {
+        .stars-container {
             position: absolute;
-            background-color: rgba(255, 255, 255, 0.8);
-            border-radius: 50%;
-            animation: float 5s linear infinite;
+            width: 100%;
+            height: 100%;
         }
         
-        @keyframes float {
-            0% {
-                transform: translateY(0) rotate(0deg);
-                opacity: 1;
-            }
-            100% {
-                transform: translateY(-100vh) rotate(360deg);
-                opacity: 0;
-            }
+        .star {
+            position: absolute;
+            background-color: #fff;
+            border-radius: 50%;
+            animation: twinkle 4s ease-in-out infinite;
+        }
+        
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 1; }
         }
     </style>
 </head>
 <body>
-    <div class="text">SanchoPance</div>
-    
+    <div class="stars-container" id="stars-container"></div>
+
     <script>
-        // Создаем частицы для фона
-        function createParticles() {
-            const container = document.body;
-            const particleCount = 50;
-            
-            for (let i = 0; i < particleCount; i++) {
-                const particle = document.createElement('div');
-                particle.classList.add('particle');
+        const container = document.getElementById('stars-container');
+        const starCount = 400;
+        
+        // Создаем звезды
+        function createStars() {
+            for (let i = 0; i < starCount; i++) {
+                const star = document.createElement('div');
+                star.classList.add('star');
                 
-                // Случайный размер
-                const size = Math.random() * 5 + 2;
-                particle.style.width = `${size}px`;
-                particle.style.height = `${size}px`;
+                // Размер от 1 до 2 пикселей
+                const size = Math.random() * 1 + 1;
+                star.style.width = `${size}px`;
+                star.style.height = `${size}px`;
                 
-                // Случайная позиция
-                particle.style.left = `${Math.random() * 100}vw`;
-                particle.style.top = `${Math.random() * 100}vh`;
+                // Позиция
+                star.style.left = `${Math.random() * 100}vw`;
+                star.style.top = `${Math.random() * 100}vh`;
+                
+                // Начальная прозрачность
+                star.style.opacity = Math.random() * 0.5 + 0.2;
                 
                 // Случайная длительность анимации
-                const duration = Math.random() * 5 + 3;
-                particle.style.animationDuration = `${duration}s`;
+                const duration = Math.random() * 3 + 2;
+                star.style.animationDuration = `${duration}s`;
                 
-                // Случайная задержка
-                particle.style.animationDelay = `${Math.random() * 5}s`;
+                // Случайная задержка анимации
+                star.style.animationDelay = `${Math.random() * 4}s`;
                 
-                container.appendChild(particle);
+                // Цвет звезды (некоторые с голубоватым оттенком)
+                if (Math.random() > 0.9) {
+                    star.style.backgroundColor = '#aadfff';
+                }
+                
+                container.appendChild(star);
             }
         }
         
-        // Запускаем создание частиц после загрузки страницы
-        window.addEventListener('load', createParticles);
+        // Инициализация
+        createStars();
     </script>
 </body>
 </html>
